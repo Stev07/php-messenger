@@ -3,7 +3,7 @@
 
 Ce travail est réalisé par : 
 
-1. Bénédicte
+1. Bénédicte Struvay
 2. Marie Grosjean
-3. Steve D.
+3. Steve Dossin
 4. Valentin Grégoire
