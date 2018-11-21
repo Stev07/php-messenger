@@ -7,3 +7,33 @@
         margin-top: 0;
     }
 }
+
+body {
+    min-height: 100vh;
+}
+
+section {
+    height: 100vh;
+}
+
+#topics {
+    background-color: rgba(163, 129, 129, 0.5);
+    border-radius: 0 5% 5% 0;
+}
+
+#messages {
+    background-color: rgba(157, 189, 157, 0.5);
+}
+
+#subs {
+    background-color: rgba(80, 80, 150, 0.5);
+    border-radius: 5% 0 0 5%;
+}
+
+#message {
+    bottom: 0;
+}
+
+.send-image {
+    transform: rotate(90deg);
+}
