@@ -34,6 +34,14 @@ section {
     bottom: 0;
 }
 
-.send-image {
+#send-div {
+}
+
+#send {
+    padding: 0;
+}
+
+#send-image {
+    width: 70%;
     transform: rotate(90deg);
 }

@@ -21,10 +21,12 @@
         <section id="messages" class="col-6">
             
 
-            <form id="message" action="" method="post" class="row">
-                <input type="text" name="message" placeholder="Your message here" class="form-control col-11"/>
-                <button type="submit" name="send" class="img-fluid col-1"><img src="../public/images/arrow.svg" class="img-fluid send-image"></button>
-            </form>
+            <div id="send-div" class="col-6 offset-3 fixed-bottom">
+                <form id="message" action="" method="post" class="row">
+                    <input type="text" name="message" placeholder="Your message here" class="form-control col-11"/>
+                    <button id="send" type="submit" name="send" class="img-fluid col-1"><img id="send-image" src="../public/images/arrow.svg" class="img-fluid send-image"></button>
+                </form>
+            </div>
         </section>
 
         <!-- Section which display all the subscribers -->
