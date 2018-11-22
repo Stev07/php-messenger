@@ -13,16 +13,39 @@
 <body class="container-fluid">
     <main class="row">
         <!-- Section with all the topics created -->
-        <section id="topics" class="col-3">
+        <section id="topics" class="d-none d-md-block col-md-3">
 
         </section>
 
         <!-- Section which display all the messages from a topic -->
-        <section id="messages" class="col-6">
-            
-
+        <section id="messages" class="col-12 col-md-6">
+            <?php
+                require('../models/message.php');
+                $messages = array();
+                $messages[] = new Message("The path of the righteous man is beset on all sides by the iniquities of the selfish and the tyranny of evil men.");
+                $messages[] = new Message('Blessed is he who, ');
+                $messages[] = new Message('in the name of charity and good will, ');
+                $messages[] = new Message('shepherds the weak through the valley of darkness, ');
+                $messages[] = new Message('for he is truly his brother\'s keeper and the finder of lost children.');
+                $messages[] = new Message('And I will strike down upon thee with great vengeance and ');
+                $messages[] = new Message('furious anger those who would attempt to poison and destroy My brothers. ');
+            ?>
+            <div class="row messages-div">
+                <?php
+                foreach($messages as $message) {
+                ?>
+                    <div class="col-12">
+                        <div class="row message">
+                            <p class="col"><?php echo $message->message;?></p>
+                        </div>
+                    </div>
+                <?php
+                }
+                ?>
+            </div>
+   
             <div id="send-div" class="col-6 offset-3 fixed-bottom">
-                <form id="message" action="" method="post" class="row">
+                <form id="message" action="" method="" class="row">
                     <input type="text" name="message" placeholder="Your message here" class="form-control col-11"/>
                     <button id="send" type="submit" name="send" class="img-fluid col-1"><img id="send-image" src="../public/images/arrow.svg" class="img-fluid send-image"></button>
                 </form>
@@ -30,7 +53,7 @@
         </section>
 
         <!-- Section which display all the subscribers -->
-        <section id="subs" class="col-3">
+        <section id="subs" class="d-none d-md-block col-3">
 
         </section>
     </main>
