@@ -13,19 +13,26 @@
 <body>
     <main class="clearfix container-fluid">
         <section class="col-12 col-md-6 offset-md-3">
-            <img src="public/images/phessenger.svg" class="img-fluid col-10 offset-1 col-md-6 offset-md-3"/>
+            <img src="../public/images/phessenger.svg" class="img-fluid col-10 offset-1 col-md-6 offset-md-3"/>
             <form method="post">
                 <div class="form-group"><br>
                     <!--<label for="email">Email Address</label>-->
-                    <input type="email" class="form-control" id="email" placeholder="Email" required>
+                    <input type="text" class="form-control" name="firstname" placeholder="Firstname">
+                </div>
+                <div class="form-group">
+                    <!--<label for="email">Email Address</label>-->
+                    <input type="text" class="form-control" name="lastname" placeholder="Lastname">
+                </div>
+                <div class="form-group">
+                    <!--<label for="email">Email Address</label>-->
+                    <input type="email" class="form-control" name="email" placeholder="Email">
                 </div>
                 <div class="form-group">
                     <!--<label for="password">Password</label>-->
-                    <input type="password" class="form-control" id="password" placeholder="Password" required>
+                    <input type="password" class="form-control" name="password" placeholder="Password">
                 </div>
                 <div class="form-group">
-                    <button type="submit" name="login" class="btn btn-primary col-12 col-sm-5">Login</button>
-                    <button type="submit" name="signin" class="sign-in btn btn-primary col-12 col-sm-5 float-right">Sign in</button>
+                    <button type="submit" name="signin" class="sign-in btn btn-primary col-12 col-sm-6 offset-sm-3">Sign in</button>
                 </div>
             </form>
         </section>

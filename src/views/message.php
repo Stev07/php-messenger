@@ -14,21 +14,20 @@
     <main class="row">
         <!-- Section with all the topics created -->
         <section id="topics" class="d-none d-md-block col-md-3">
-
+            
         </section>
 
         <!-- Section which display all the messages from a topic -->
         <section id="messages" class="col-12 col-md-6">
             <?php
-                require('../models/message.php');
                 $messages = array();
-                $messages[] = new Message("The path of the righteous man is beset on all sides by the iniquities of the selfish and the tyranny of evil men.");
-                $messages[] = new Message('Blessed is he who, ');
-                $messages[] = new Message('in the name of charity and good will, ');
-                $messages[] = new Message('shepherds the weak through the valley of darkness, ');
-                $messages[] = new Message('for he is truly his brother\'s keeper and the finder of lost children.');
-                $messages[] = new Message('And I will strike down upon thee with great vengeance and ');
-                $messages[] = new Message('furious anger those who would attempt to poison and destroy My brothers. ');
+                $messages[] = "The path of the righteous man is beset on all sides by the iniquities of the selfish and the tyranny of evil men.";
+                $messages[] = 'Blessed is he who, ';
+                $messages[] = 'in the name of charity and good will, ';
+                $messages[] = 'shepherds the weak through the valley of darkness, ';
+                $messages[] = 'for he is truly his brother\'s keeper and the finder of lost children.';
+                $messages[] = 'And I will strike down upon thee with great vengeance and ';
+                $messages[] = 'furious anger those who would attempt to poison and destroy My brothers. ';
             ?>
             <div class="row messages-div">
                 <?php
@@ -36,7 +35,7 @@
                 ?>
                     <div class="col-12">
                         <div class="row message">
-                            <p class="col"><?php echo $message->message;?></p>
+                            <p class="col"><?php echo $message?></p>
                         </div>
                     </div>
                 <?php
