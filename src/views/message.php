@@ -14,7 +14,48 @@
     <main class="row">
         <!-- Section with all the topics created -->
         <section id="topics" class="d-none d-md-block col-md-3">
-            
+            <div class="row">
+                <nav class="col navbar navbar-expand-lg">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="row">
+                        <ul class="col navbar-nav">
+                            <a href="">
+                                <li class="nav-item col-4">Home</li>
+                            </a>
+                            <a href="">
+                                <li class="nav-item col-4">Pref</li>
+                            </a>
+                            <a href="">
+                                <li class="nav-item col-4">Logout</li>
+                            </a>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <div class="row">
+                <?php 
+                    $conversations = array();
+                    $conversations[] = 'Subject1';
+                    $conversations[] = 'Subject2';
+                    $conversations[] = 'Subject3';
+                    $conversations[] = 'Subject4';
+                    $conversations[] = 'Subject5';
+                    $conversations[] = 'Subject6';
+                    $conversations[] = 'Subject7';
+
+                    foreach($conversations as $convers){
+                        ?>
+                        <div class="col-12 topics">
+                            <p><?php echo $convers ?></p>
+                        </div>
+                        <?php
+                    }
+                ?>
+                
+            </div>
         </section>
 
         <!-- Section which display all the messages from a topic -->

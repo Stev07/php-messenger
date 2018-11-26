@@ -18,6 +18,10 @@ section {
     height: 100vh;
 }
 
+nav {
+    background-color: transparent;
+}
+
 #topics {
     border-radius: 0 5% 5% 0;
     border-right: solid 2px rgba(0, 0, 0, 0.431);
@@ -87,6 +91,10 @@ section {
     border-radius: 100%;
 
     transform: rotate(90deg);
+}
+
+.topics {
+    background-color: rgb(47, 195, 47);
 }
 
 /* width */
