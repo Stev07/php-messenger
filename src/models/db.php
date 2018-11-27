@@ -1,4 +1,5 @@
 <?php
+// Ne preter pas attention à cette classe.
     class MyDB {
         private static $_instance = null;
 
