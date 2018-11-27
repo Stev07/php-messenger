@@ -1,13 +1,9 @@
 <?php
-class Message {
-    private $_message;
-    
-    public function __construct($message){
-        $this->_message = $message;
-    }
+    class Message {
+        // Ici les propriétés
 
-    public function getMessage() {
-        return $this->_message;
+        // Ici le constructeur
+
+        // Ici la fonction insert sans paramètre
     }
-}
 ?>

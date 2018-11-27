@@ -1,7 +1,7 @@
 version: "3"
 services:
     php:
-        image: php:apache
+        image: becodeorg/php
         volumes:
             - ./src:/var/www/html/
         ports:
