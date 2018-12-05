@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require ('/models/user.php');   
+    require ('models/user.php');   
 
     try {
         $conn = new PDO("mysql:host=mysql;dbname=messenger", 'messenger', 'messenger');

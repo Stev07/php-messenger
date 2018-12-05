@@ -1,5 +1,5 @@
     <?php
-
+    
     class User {
         // Ici les propriétés
         public $id;
