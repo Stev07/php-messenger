@@ -40,4 +40,13 @@
 
         Good luck all :)
     */
+
+    require 'models/db_connect.php';
+    require 'models/user.php';
+
+    $email = "steve.dossin@gmail.com";
+
+    $result = User::getUserByEmail($conn,$email);
+    var_dump($result->email);
+
 ?>

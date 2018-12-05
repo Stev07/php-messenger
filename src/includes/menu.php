@@ -8,10 +8,10 @@
             <a href="/">
                 <li class="nav-item col"><img src="../public/images/home.svg" alt="Home" width="32px" height="32px"/></li>
             </a>
-            <a href="/views/profil.php">
+            <a href="/profil.php">
                 <li class="nav-item col"><img src="../public/images/setting.svg" alt="Profil" width="32px" height="32px"/></li>
             </a>
-            <a href="/">
+            <a href="/index.php">
                 <li class="nav-item col" ><img src="../public/images/exit.svg" alt="Logout" width="32px" height="32px"/></li>
             </a>
         </ul>

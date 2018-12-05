@@ -39,10 +39,11 @@
         </section>
     </main>
     <?php
-
+        session_start();
         require('models/db_connect.php');
         require('models/user.php');
 
+        //CONNEXION
         if(isset($_POST['signin'])){
             $firstname = $_POST['firstname'];
             $lastname = $_POST['lastname'];
@@ -51,6 +52,7 @@
             $user = new User($firstname, $lastname, $email, $password);
             $user->addUserToDb($conn);
         }
+
 
     ?> 
 
