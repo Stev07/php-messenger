@@ -1,7 +1,7 @@
 version: "3"
 services:
     php:
-        image: php:apache
+        image: becodeorg/php
         volumes:
             - ./src:/var/www/html/
         ports:
@@ -10,7 +10,7 @@ services:
         image: mysql:5
         restart: always
         volumes:
-            - ./db:/var/lib/mysql
+            - mysql_db:/var/lib/mysql
         environment:
             MYSQL_ROOT_PASSWORD: root
             MYSQL_DATABASE: messenger
@@ -28,3 +28,6 @@ services:
         image: tophfr/mailcatcher
         ports:
             - "8002:80"
+
+volumes:
+    mysql_db:
