@@ -52,7 +52,7 @@
 
             $messages = array();
             foreach($result as $message) {
-                $messages[] = new Message($message['user_id'], $message['conversation_id'], $message['content'], $message['date'], $message['message_id']);
+                $messages[] = new Message($message['author_id'], $message['conversation_id'], $message['content'], $message['date'], $message['id']);
             }
 
             return $messages;
@@ -63,7 +63,7 @@
          * Cette méthode est nécessaire pour la récupération d'une conversation pour les messages
          */
         public function getMessageByID($conn, $id){
-            $sql = "SELECT * FROM Messages WHERE message_id=:id LIMIT 1;";
+            $sql = "SELECT * FROM Messages WHERE id=:id LIMIT 1;";
             $options = array(
                 "id" => $id
             );
@@ -76,7 +76,7 @@
                 return false;
             }
 
-            return new Message($result["user_id"], $result['conversation_id'], $result['content'], $result['date'], $result['message_id']);
+            return new Message($result["author_id"], $result['conversation_id'], $result['content'], $result['date'], $result['id']);
         }
     }
 ?>

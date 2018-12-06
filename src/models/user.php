@@ -26,7 +26,7 @@
                 "password" => $this->password,
                 "avatar" => $this->avatar
             );
-            $stmt = $this->conn->prepare($sql);
+            $stmt = $conn->prepare($sql);
             $success = $stmt->execute($options);
 
             return $success;

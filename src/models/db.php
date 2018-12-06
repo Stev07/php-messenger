@@ -1,5 +1,4 @@
 <?php
-
     class DB {
         public $conn;
 
@@ -10,6 +9,7 @@
         public function __construct(){
             try {
                 $this->conn = new PDO($this->DSN, $this->DB_USER, $this->DB_PASS);
+                echo 'connected';
             } catch (PDOException $e){
                 echo "Erreur Connexion (rien ne vas plus) => " . $e->getMessage();
             }

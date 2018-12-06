@@ -15,7 +15,7 @@
             $options = array(
                 "id" => $this->id,
                 "subject" => $this->subject,
-                "user_id" => $this->user->id
+                "user_id" => $this->user_id
             );
             $stmt = $conn->prepare($sql);
             $success = $stmt->execute($options);
@@ -42,7 +42,7 @@
 
             $conversations = array();
             foreach($result as $conversation) {
-                $conversations[] = new Conversation($conversation["user_id"], $conversation["subject"], $conversation['conversation_id']);
+                $conversations[] = new Conversation($conversation["author_id"], $conversation["subject"], $conversation['id']);
             }
 
             return $conversations;
@@ -56,7 +56,7 @@
          * Exemple d'utilisation: Conversation::getConversationById($connexion, 1);
          */
         public static function getConversationById($conn, $id){
-            $sql = "SELECT * FROM Conversations WHERE conversation_id=:id LIMIT 1;";
+            $sql = "SELECT * FROM Conversations WHERE id=:id LIMIT 1;";
             $options = array(
                 "id" => $id
             );
@@ -68,7 +68,7 @@
                 return false;
             }
 
-            return new Conversation($result["user_id"], $result['subject'], $result['conversation_id']);
+            return new Conversation($result["author_id"], $result['subject'], $result['id']);
         }
     }
 ?>
