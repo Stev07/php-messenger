@@ -1,0 +1,44 @@
+body, main {
+    max-height: 100vh;
+}
+
+.userBox{
+    display:grid;
+    grid-template-columns: 40% 20% 40%;
+    grid-template-rows: repeat(2, 40%);
+    text-align:center;
+}
+
+.user{
+    grid-column:1;
+    grid-row:1;
+}
+
+.password{
+    grid-column:3;
+    grid-row:1;
+}
+
+.avatar{
+    grid-column:1/4;
+    grid-row:2;
+    padding-top: 20px;
+}
+
+.profil{
+    text-align: center;
+}
+
+.title{
+    padding-bottom:30px;
+}
+
+.back{
+    text-align: center;
+}
+
+.deleteaccount{
+    position: absolute;
+    top:0px;
+    right:0px;
+}

@@ -1,0 +1,258 @@
+.sign-in {
+    margin-top: 20px;
+}
+
+#messages:before {
+    content: "";
+
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+
+    background: linear-gradient(to bottom, rgb(97, 215, 226), white);
+    z-index: -1;
+}
+
+body {
+    min-height: 100vh;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.form-log {
+    border-radius: 30px;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+}
+
+.form-title{
+    color: white;
+    font-weight: 800;
+}
+
+.form-error{
+    color: red;
+    font-weight: 800;
+}
+
+section {
+    height: 100vh;
+}
+
+nav {
+    border-bottom:  solid 2px rgba(0, 0, 0, 0.431);
+}
+
+.menu-icon {
+    width: 32px;
+    height: auto;
+}
+
+.centered {
+    text-align: center;
+}
+
+#topics {
+    border-radius: 0 0 6% 0;
+    border-right: solid 2px rgba(0, 0, 0, 0.431);
+    background-color: white;
+    z-index: 2;
+}
+
+#convers {
+    max-height: 80%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.add-convers{
+    height: 40px;
+}
+
+.adder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 100% 100% 0;
+    background-color: cornflowerblue;
+    color: white;
+}
+.adder:hover {
+    text-decoration: none;
+    color: white;
+    background-color: rgba(38, 38, 219, 0.685);
+    cursor: pointer;
+}
+
+#subs {
+    border-radius: 0 0 0 6%;
+    border-left: solid 2px rgba(0, 0, 0, 0.431);
+    background-color: white;
+    z-index: 2;
+}
+
+.user {
+    border-bottom: solid 2px rgba(0, 0, 0, 0.431);
+    margin: 5px 0;
+    padding-top: 10px;
+
+    background-color: rgba(171, 171, 253, 0.616);
+    border-radius: 20px 20px 0 0;
+
+    text-align: center;
+}
+
+.topics > p {
+    margin-bottom: 0.4rem;
+}
+
+.topics:hover {
+    background-color: lightgray;
+}
+
+#message {
+    bottom: 0;
+}
+
+#send {
+    padding: 0;
+    max-height: 38px;
+}
+
+#send-image {
+    max-height: 35px;
+    transform: rotate(90deg);
+}
+
+.messages-div {
+    position: relative;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding-top: 10px;
+}
+
+.message {
+    background-color: cornflowerblue;
+    border-radius: 10px;
+    padding: 0 10px;
+    margin: 10px;
+    margin-top: 0;
+}
+
+.del-message{
+    width: 16px;
+    height: 16px;
+    font-size: 16px;
+
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    
+    position: absolute;
+    top: -5%;
+    right: 3%;
+
+    border-radius: 100%;
+    border: solid 2px black;
+    color: black;
+    transform: scale(1);
+}
+
+.del-message:hover{
+    color: black;
+    text-decoration: none;
+    transform: scale(1.1);
+}
+
+.add-reaction {
+    width: 16px;
+    height: 16px;
+    font-size: 20px;
+
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+
+    border-radius: 100%;
+    border: solid 2px black;
+}
+
+.add-reaction:hover {
+    cursor: pointer;
+}
+
+.emoji-list-hidden {
+    display: none;
+}
+.emoji-list-show {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 5px;
+
+    justify-content: center;
+
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.6);
+
+    border-radius: 20px;
+
+    width: fit-content;
+    z-index: 10;
+
+    right: 10%;
+}
+
+.message p {
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: transparent; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background:cornflowerblue; 
+    border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background:rgb(71, 127, 230); 
+}
+
+@media (min-width: 576px) {
+    .sign-in {
+        margin-top: 0;
+    }
+}
+
+@media (min-width: 768px) {
+    #messages:before {
+        content: "";
+    
+        position: absolute;
+        width: 120%;
+        height: 100%;
+        left: -10%;
+    
+        background: linear-gradient(to bottom, rgb(97, 215, 226), white);
+        z-index: -1;
+    }
+}
+
+.wrap40 {
+    height: 40px;
+}

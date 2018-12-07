@@ -1,0 +1,33 @@
+version: "3"
+services:
+    php:
+        image: becodeorg/php
+        volumes:
+            - ./src:/var/www/html/
+        ports:
+            - "8000:80"
+    mysql:
+        image: mysql:5
+        restart: always
+        volumes:
+            - mysql_db:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: messenger
+            MYSQL_USER: messenger
+            MYSQL_PASSWORD: messenger
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin:latest
+        ports:
+            - "8001:80"
+        environment:
+            PMA_HOST: mysql
+            PMA_USER: messenger
+            PMA_PASSWORD: messenger
+    mailcatcher:
+        image: tophfr/mailcatcher
+        ports:
+            - "8002:80"
+
+volumes:
+    mysql_db:
