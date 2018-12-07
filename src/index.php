@@ -28,7 +28,7 @@
         <section class="col-12 col-md-6 offset-md-3">
             <img src="public/images/phessenger.svg" class="img-fluid col-10 offset-1 col-md-6 offset-md-3"/>
             <form action="./handlers/handle-login.php" method="post" class="form-log">
-                <h3 class="form-title text-center"> LOGIN </h3>
+                <h3 class="form-title text-center"> Connexion </h3>
                 <div class="form-group">
                     <br>
                     <input type="email" name="email" class="form-control" id="email" placeholder="Email">
@@ -37,8 +37,8 @@
                     <input type="password" name="password" class="form-control" id="password" placeholder="Password">
                 </div>
                 <div class="form-group">
-                    <button type="submit" name="login" class="btn btn-primary col-12 col-sm-5">Login</button>
-                    <button type="submit" name="signin" class="sign-in btn btn-primary col-12 col-sm-5 float-right">Sign in</button>
+                    <button type="submit" name="login" class="btn btn-primary col-12 col-sm-5">Se conncter</button>
+                    <button type="submit" name="signin" class="sign-in btn btn-primary col-12 col-sm-5 float-right">Inscription</button>
                 </div>
                 <?php 
                 if(isset($output)){

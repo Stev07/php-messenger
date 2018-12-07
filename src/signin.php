@@ -1,20 +1,11 @@
 <?php
-        session_start();
-        require('models/db_connect.php');
-        require('models/user.php');
-
-        //SIGNIN
-        if(isset($_POST['signin'])){
-            $firstname = htmlspecialchars($_POST['firstname']);//Récupération données POST
-            $lastname = htmlspecialchars($_POST['lastname']);
-            $email = htmlspecialchars($_POST['email']);
-            $password = password_hash($_POST['password'], PASSWORD_BCRYPT);//Hash du pass avec BCRYPT
-            $user = new User($firstname, $lastname, $email, $password);//Création nouvel utilisateur
-            $user->addUserToDb($conn);//Envoi user -> DB
-        }
-
-
-    ?>
+    session_start();
+    $output = null;
+    if(isset($_SESSION["failed"])){
+        $output = "Erreur de confirmation de mot de passe";
+        unset($_SESSION["failed"]);
+    } 
+?>
     
 <!DOCTYPE html>
 <html lang="fr">
@@ -32,27 +23,32 @@
     <main class="clearfix container-fluid">
         <section class="col-12 col-md-6 offset-md-3">
             <img src="../public/images/phessenger.svg" class="img-fluid col-10 offset-1 col-md-6 offset-md-3"/>
-            <form action="./traitements/handlerSignin.php" method="post" class="form-log">
+            <form action="./handlers/handle-signin.php" method="post" class="form-log">
                 <h3 class="form-title text-center"> Inscription </h3>
                 <div class="form-group">
-                    <input type="text" class="form-control" name="firstname" placeholder="Prénom">
+                <input type="text" class="form-control" name="firstname" placeholder="Prénom" required>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" name="lastname" placeholder="Nom">
+                    <input type="text" class="form-control" name="lastname" placeholder="Nom" required>
                 </div>
                 <div class="form-group">
-                    <input type="email" class="form-control" name="email" placeholder="Email">
+                    <input type="email" class="form-control" name="email" placeholder="Email" required>
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" name="password" placeholder="Mot de passe">
+                    <input type="password" class="form-control" name="password" placeholder="Mot de passe" required>
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" name="confirm-password" placeholder="Confirmez votre mot de passe">
+                    <input type="password" class="form-control" name="confirm-password" placeholder="Confirmez votre mot de passe" required>
                 </div>
                 <div class="form-group">
-                    <button type="submit" name="back" class="btn btn-primary col-12 col-sm-5">Retour</button>
+                    <a href="/" class="btn btn-primary col-12 col-sm-5">Retour</a>
                     <button type="submit" name="signin" class="sign-in btn btn-primary col-12 col-sm-5 float-right">S'inscrire</button>
                 </div>
+                <?php 
+                if(isset($output)){
+                    echo "<h4 class='form-error text-center'>$output</h4>";
+                }
+                ?>
             </form>
         </section>
 

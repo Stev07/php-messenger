@@ -32,16 +32,38 @@
             return $success;
         }
 
-        public function update($conn){
-            $sql = "UPDATE Users SET firstname=':firstname' AND lastname=':lastname' AND email=':email' 
-                    AND password=':password' AND avatar=':avatar' WHERE id=:id;";
+        public function updateUser($conn){
+            $sql = "UPDATE Users SET firstname = :firstname, lastname = :lastname  WHERE email = :email";
             $options = array(
-                "firstname" => $this->firstname,
-                "lastname" => $this->lastname,
-                "email" => $this->email,
-                "password" => $this->password,
-                "avatar" => $this->avatar,
-                "id" => $this->id
+                'firstname' => $this->firstname,//Envoi data -> DB
+                'lastname' => $this->lastname,
+                'email' => $this->email
+            );
+
+            $stmt = $conn->prepare($sql);//Préparation requête SQL
+            $success = $stmt->execute($options);
+
+            return $success;
+        }
+
+        public function updatePassword($conn){
+            $sql = "UPDATE Users SET password = :password WHERE email = :email";
+            $options = array(
+                'password' => $this->password,
+                'email' => $this->email
+            );
+
+            $stmt = $conn->prepare($sql);//Préparation requête SQL
+            $success = $stmt->execute($options);
+
+            return $success;
+        }
+
+        public function updateAvatar($conn){
+            $sql = "UPDATE Users SET avatar = :avatar WHERE email = :email";
+            $options = array(
+                'avatar' => $this->avatar,
+                "email" => $this->email
             );
 
             $stmt = $conn->prepare($sql);
@@ -69,7 +91,7 @@
 
             $users = array();
             foreach($result as $user) {
-                $users[] = new User($user['firstname'], $user['lastname'], $user['email'], $user['password'], "", $user['user_id']);;
+                $users[] = new User($user['firstname'], $user['lastname'], $user['email'], $user['password'], $user['avatar'], $user['user_id']);;
             }
 
             return $users;
@@ -89,7 +111,7 @@
 
             $result = $stmt->fetch();
 
-            return new User($result["firstname"], $result["lastname"], $result["email"], $result["password"], "", $result["id"]);
+            return new User($result["firstname"], $result["lastname"], $result["email"], $result["password"], $result['avatar'], $result["id"]);
         }
 
         /**
@@ -106,7 +128,7 @@
 
             $result = $stmt->fetch();
 
-            return new User($result["firstname"], $result["lastname"], $result["email"], $result["password"], "", $result["id"]);
+            return new User($result["firstname"], $result["lastname"], $result["email"], $result["password"], $result['avatar'],  $result["id"]);
         }
 
         public static function getParticipatingUsers($conn, $conversation_id){
