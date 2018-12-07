@@ -20,7 +20,7 @@ body {
     z-index: 0;
 }
 
-form {
+.form-log {
     border-radius: 30px;
     background-color: rgba(0, 0, 0, 0.5);
     padding: 20px;
@@ -138,6 +138,31 @@ nav {
     padding: 0 10px;
     margin: 10px;
     margin-top: 0;
+}
+
+.del-message{
+    width: 16px;
+    height: 16px;
+    font-size: 16px;
+
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    
+    position: absolute;
+    top: -5%;
+    right: 3%;
+
+    border-radius: 100%;
+    border: solid 2px black;
+    color: black;
+    transform: scale(1);
+}
+
+.del-message:hover{
+    color: black;
+    text-decoration: none;
+    transform: scale(1.1);
 }
 
 .add-reaction {

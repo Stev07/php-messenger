@@ -41,6 +41,10 @@
             $success = $stmt->execute($options);
             $result = $stmt->fetchAll();
 
+            if(!$result || !$success){
+                return false;
+            }
+
             $reactions = array();
             foreach($result as $reaction) {
                 $reactions[] = new Reaction($reaction["author_id"], $reaction["message_id"], $reaction['emoji'], $reaction['id']);;
@@ -49,31 +53,28 @@
             return $reactions;
         }
 
-        /*public function getReactionsForDisplay($conn, $message_id){
-            $sql = "SELECT COUNT(Reactions.emoji), Reactions.emoji FROM Reactions JOIN Messages ON Messages.message_id=Reactions.message_id WHERE Reactions.message_id=:message_id GROUP BY Reactions.emoji";
+        public function getReactionsForDisplay($conn, $message_id){
+            $sql = "SELECT COUNT(Reactions.emoji), Reactions.emoji FROM Reactions WHERE Reactions.message_id=:message_id GROUP BY Reactions.emoji";
             $options = array(
                 "message_id" => $message_id    
             );
 
-            $stmt = $this->conn->prepare($sql);
-            $stmt->execute($options);
+            $stmt = $conn->prepare($sql);
+            $success = $stmt->execute($options);
             $result = $stmt->fetchAll();
+            
+            if(!$result || !$success){
+                return false;
+            }
 
             $reactions = array();
 
-            if($result){
-                foreach($result as $reaction) {
-                    $user = $this->getUserByID($reaction["user_id"]);
-                    $message = $this->getMessageByID($reaction["message_id"]);
-                    $temp = new Reaction($user, $message, $reaction['emoji'], $reaction['reaction_id']);
-                    $reactions[] = $temp;
-                }
+            foreach($result as $reaction) {
+                $reactions[] =  new Reaction($reaction["user_id"], $reaction["message_id"], $reaction['emoji'], $reaction['reaction_id']);;
             }
-            var_dump($result);
-            var_dump($result);
 
             return $result;
-        }*/
+        }
     }
 
 ?>

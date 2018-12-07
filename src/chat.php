@@ -19,22 +19,29 @@
 </head>
 <body class="container-fluid">
     <?php 
-        require('models/db.php');
+        require_once("models/db.php");
+        require_once('models/user.php');
+        require_once('models/conversation.php');
+        require_once('models/message.php');
+        require_once('models/reaction.php');
+
         $db=new DB();
 
-        $conversations = $db->getConversations();
+        $conversations = Conversation::GetConversations($db->conn);
+        $currentUser = User::getUserByEmail($db->conn, $_SESSION["user_email"]);
         
         if(isset($_GET['conv_id'])){
-            $messages = $db->getMessagesByConversationID($_GET['conv_id']);
+            $messages = Message::getMessagesByConversationID($db->conn, $_GET['conv_id']);
+            $users = User::getParticipatingUsers($db->conn, $_GET['conv_id']);
         }
     ?>
     <main class="row">
         <!-- Section with all the topics created -->
         <section id="topics" class="d-none d-md-block col-md-3">
             <div id="menu" class="row">
-                <?php include('views/menu.php'); ?>
+                <?php include('includes/menu.php'); ?>
             </div>
-            <form method="post" action="./traitements/adder.php" class="row">
+            <form method="post" action="./handlers/handle-chat.php" class="row">
                 <input type="text" class="col-10" name="subject" placeholder="Entrez votre sujet">
                 <input type="submit" name="add-convers" value=">" class="adder col-1">
             </form>
@@ -42,9 +49,10 @@
                 <?php 
                     if(!is_null($conversations) && sizeof($conversations)>0){
                         foreach($conversations as $convers){
-                                echo '<a href="message.php?conv_id=' . $convers->id . '" class="col-12 topics">';
+                            $author = User::GetUserById($db->conn, $convers->user_id);
+                                echo '<a href="chat.php?conv_id=' . $convers->id . '" class="col-12 topics">';
                                     echo '<p class="subjects float-left">' . $convers->subject . '</p> <br>';
-                                    echo '<p class="subjects float-right"><i>' . $convers->user->firstname . '</i></p>';
+                                    echo '<p class="subjects float-right"><i>' . $author->firstname . '</i></p>';
                                 echo '</a>';
                         }
                     } else {
@@ -57,7 +65,7 @@
         <!-- Section which display all the messages from a topic -->
         <section id="messages" class="col-12 col-md-6">
             <?php if(isset($_GET["conv_id"])){ ?>
-                <form method="post" action="./traitements/adder.php" class="row">
+                <form method="post" action="./handlers/handle-chat.php" class="row">
                     <input type="text" class="col-11" name="message" placeholder="Entrez votre message">
                     <input type="submit" name="add-message" value=">" class="adder col-1">
                     <input type="hidden" name="conversation_id" value="<?php echo $_GET['conv_id']; ?>">
@@ -65,25 +73,30 @@
            
                 <div class="row messages-div">
                     <?php        
-                    if(!is_null($messages) && sizeof($messages)>0){
+                    if(!is_null($messages) && !empty($messages)){
                         foreach($messages as $message) {
-                            $reactions = $db->getReactionsForDisplay($message->id);
+                            $reactions = Reaction::getReactionsForDisplay($db->conn, $message->id);
 
                             echo '<div class="col-12">';
                                 echo '<div class="row message">';
+                                    if($message->user_id == $currentUser->id){
+                                        echo '<a class="del-message" href="/handlers/handle-chat.php?conv_id=' . $message->conversation_id . '&delete-message=' . $message->id . '">X</a>';
+                                    }
                                     echo "<p class=\"col-12\">$message->content</p>";
                                     echo "<p class=\"reaction\">";
-                                        foreach($reactions as $reaction){
-                                            echo $reaction[0] . $reaction[1];
+                                        if($reactions){
+                                            foreach($reactions as $reaction){
+                                                echo $reaction[0] . $reaction[1];
+                                            }
                                         }
                                     echo "</p>";
                                     echo "<p class=\"add-reaction\">";
                                         echo '+';
                                         echo '<span class="emoji-list-hidden">';
-                                            echo '<a href="/traitements/adder.php?add-reaction=true&emoji=128077&message_id=' . $message->id . '">&#128077;</a> ';
-                                            echo '<a href="/traitements/adder.php?add-reaction=true&emoji=128513&message_id=' . $message->id . '">&#128513;</a> ';
-                                            echo '<a href="/traitements/adder.php?add-reaction=true&emoji=128514&message_id=' . $message->id . '">&#128514</a> ';
-                                            echo '<a href="/traitements/adder.php?add-reaction=true&emoji=128544&message_id=' . $message->id . '">&#128544;</a> ';
+                                            echo '<a href="/handlers/handle-chat.php?add-reaction=true&emoji=128077&message_id=' . $message->id . '">&#128077;</a> ';
+                                            echo '<a href="/handlers/handle-chat.php?add-reaction=true&emoji=128513&message_id=' . $message->id . '">&#128513;</a> ';
+                                            echo '<a href="/handlers/handle-chat.php?add-reaction=true&emoji=128514&message_id=' . $message->id . '">&#128514</a> ';
+                                            echo '<a href="/handlers/handle-chat.php?add-reaction=true&emoji=128544&message_id=' . $message->id . '">&#128544;</a> ';
                                         echo '</span></p></div></div>';
                         }
                     } else {
@@ -98,13 +111,13 @@
         <!-- Section which display all the subscribers -->
         <section id="subs" class="d-none d-md-block col-3">
             <?php
-                if(!is_null($users)){
+                if($users){
                     echo "<h3>Participant</h3><hr>";
                     echo '<div class="row">';
                     foreach($users as $user){
                         echo '<div class="col-12">';
                             echo '<div class="user row">';
-                                echo "<h5 class='col'> $user->firstname $user->lastname</h5>";
+                                echo "<h5 class='col'>$user->firstname $user->lastname</h5>";
                             echo '</div>';
                         echo '</div>';
                     }

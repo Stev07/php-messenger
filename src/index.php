@@ -3,7 +3,7 @@
     $output = null;
     if(isset($_SESSION["auth"])){
         if($_SESSION["auth"]){
-            header("location: message.php");
+            header("location: chat.php");
         } else {
             $output = "Erreur dans l'email ou le mot de passe.";
             unset($_SESSION["auth"]);
@@ -27,7 +27,7 @@
     <main class="clearfix container-fluid">
         <section class="col-12 col-md-6 offset-md-3">
             <img src="public/images/phessenger.svg" class="img-fluid col-10 offset-1 col-md-6 offset-md-3"/>
-            <form action="./handlers/handle-login.php" method="post">
+            <form action="./handlers/handle-login.php" method="post" class="form-log">
                 <h3 class="form-title text-center"> LOGIN </h3>
                 <div class="form-group">
                     <br>

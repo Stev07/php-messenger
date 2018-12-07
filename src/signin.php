@@ -14,14 +14,14 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="../public/css/styles.css" />
 
-    <title>Login</title>
+    <title>Inscription</title>
 </head>
 <body>
     <main class="clearfix container-fluid">
         <section class="col-12 col-md-6 offset-md-3">
             <img src="../public/images/phessenger.svg" class="img-fluid col-10 offset-1 col-md-6 offset-md-3"/>
-            <form action="./traitements/handlerSignin.php" method="post">
-                <h3 class="form-title text-center"> LOGIN </h3>
+            <form action="./traitements/handlerSignin.php" method="post" class="form-log">
+                <h3 class="form-title text-center"> Inscription </h3>
                 <div class="form-group">
                     <input type="text" class="form-control" name="firstname" placeholder="Prénom">
                 </div>

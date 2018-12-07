@@ -62,7 +62,7 @@
          * GET ONE CONVERSATION BY ID
          * Cette méthode est nécessaire pour la récupération d'une conversation pour les messages
          */
-        public function getMessageByID($conn, $id){
+        public function getMessageById($conn, $id){
             $sql = "SELECT * FROM Messages WHERE id=:id LIMIT 1;";
             $options = array(
                 "id" => $id
@@ -77,6 +77,18 @@
             }
 
             return new Message($result["author_id"], $result['conversation_id'], $result['content'], $result['date'], $result['id']);
+        }
+
+        public static function delete($conn, $message_id){
+            $sql = "DELETE FROM Messages WHERE id=:id";
+            $options = array(
+                "id" => $message_id
+            );
+
+            $stmt = $conn->prepare($sql);
+            $success = $stmt->execute($options);
+
+            return $success;
         }
     }
 ?>

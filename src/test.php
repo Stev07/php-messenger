@@ -30,8 +30,16 @@
 
     $reactions = Reaction::getReactionsByMessageId($db->conn, 27);
     print_r($reactions);
+    echo "<br><br>";
 
+    $reactionDisplay = Reaction::getReactionsForDisplay($db->conn, 27);
+    print_r($reactionDisplay);
+    echo "<br><br>";
     
+    print_r(User::getParticipatingUsers($db->conn, 3));
+    echo "<br><br>";
+    print_r(User::getParticipatingUsers($db->conn, 1));
+
     /*$val = new User('Valentin', 'Grégoire', 'valentin@gmail.com', password_hash('password', PASSWORD_BCRYPT, array('cost' => 12)));
     $steve = new User('Steve', 'Dossin', 'steve@gmail.com', password_hash('password', PASSWORD_BCRYPT, array('cost' => 12)));
     $marie = new User('Marie', 'Grosjean', 'marie@gmail.com', password_hash('password', PASSWORD_BCRYPT, array('cost' => 12)));

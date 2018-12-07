@@ -108,5 +108,25 @@
 
             return new User($result["firstname"], $result["lastname"], $result["email"], $result["password"], "", $result["id"]);
         }
+
+        public static function getParticipatingUsers($conn, $conversation_id){
+            $sql = "SELECT DISTINCT Users.* FROM Users JOIN Messages ON Messages.author_id=Users.id WHERE Messages.conversation_id=:conv_id";
+            $options = array(
+                "conv_id" => $conversation_id
+            );
+
+            $stmt = $conn->prepare($sql);
+            $success = $stmt->execute($options);
+            $result = $stmt->fetchAll();
+            
+            if(!$result || !$success) return false;
+
+            $users = array();
+            foreach($result as $user) {
+                $users[] = new User($user['firstname'], $user['lastname'], $user['email'], $user['password'], "", $user['user_id']);;
+            }
+
+            return $users;
+        }
     }
 ?>
