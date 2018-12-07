@@ -37,7 +37,7 @@
                     <input type="password" name="password" class="form-control" id="password" placeholder="Password">
                 </div>
                 <div class="form-group">
-                    <button type="submit" name="login" class="btn btn-primary col-12 col-sm-5">Se conncter</button>
+                    <button type="submit" name="login" class="btn btn-primary col-12 col-sm-5">Se connecter</button>
                     <button type="submit" name="signin" class="sign-in btn btn-primary col-12 col-sm-5 float-right">Inscription</button>
                 </div>
                 <?php 
