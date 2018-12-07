@@ -1,3 +1,21 @@
+<?php
+        session_start();
+        require('models/db_connect.php');
+        require('models/user.php');
+
+        //SIGNIN
+        if(isset($_POST['signin'])){
+            $firstname = htmlspecialchars($_POST['firstname']);//Récupération données POST
+            $lastname = htmlspecialchars($_POST['lastname']);
+            $email = htmlspecialchars($_POST['email']);
+            $password = password_hash($_POST['password'], PASSWORD_BCRYPT);//Hash du pass avec BCRYPT
+            $user = new User($firstname, $lastname, $email, $password);//Création nouvel utilisateur
+            $user->addUserToDb($conn);//Envoi user -> DB
+        }
+
+
+    ?>
+    
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -38,24 +56,6 @@
             </form>
         </section>
     </main>
-    <?php
-        session_start();
-        require('models/db_connect.php');
-        require('models/user.php');
-
-        //CONNEXION
-        if(isset($_POST['signin'])){
-            $firstname = $_POST['firstname'];
-            $lastname = $_POST['lastname'];
-            $email = $_POST['email'];
-            $password = $_POST['password'];
-            $user = new User($firstname, $lastname, $email, $password);
-            $user->addUserToDb($conn);
-        }
-
-
-    ?> 
-
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>

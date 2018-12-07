@@ -1,10 +1,12 @@
 <?php
     session_start();
-    require ('models/user.php');   
+    require ('models/user.php');
+    require ('models/db_connect.php');
 
+
+//CONNEXION DB
     try {
         $conn = new PDO("mysql:host=mysql;dbname=messenger", 'messenger', 'messenger');
-        // echo "Connected successfully";
     } catch(PDOException $e){
         // echo "Connection failed: " . $e->getMessage();
     }
@@ -13,34 +15,32 @@
 	// 	// header('Location: login.php');
     
     if(isset($_POST['login'])) {
-		$errMsg = '';
-		$email = $_POST['email'];
-        $password = $_POST['password'];
         
+		$errMsg = '';
+        $email = $_POST['email'];
+        $user = User::getUserByEmail($conn,$email);//Récupération objet user
+        $password = $_POST['password'];
+        $password2 = password_verify($password, $user->password);//Vérification hashpassword
 		if($email == '')
 			$errMsg = 'Enter email';
-		if($password == '')
+		if($password = '')
 			$errMsg = 'Enter password';
-		if($errMsg == '') {
+		if($errMsg == '') {//Si email et pass sont completés
 			try {
                 $stmt = $conn->prepare('SELECT id, firstname, lastname, email, password FROM `Users` WHERE email = :email');
-                
 				$result = $stmt->execute(array(
-					':email' => $email
-					));
-                $data = $stmt->fetch(PDO::FETCH_ASSOC);
+                    ':email' => $email                    
+                    ));
+             
+                $data = $stmt->fetch(PDO::FETCH_ASSOC);//Récupération des données utilisateur
                 
-				if($data == false){
+				if($data == false){//Si l'utilisateur n'existe pas
 					$errMsg = "User $email not found.";
-				}else {
-					if($password == $data['password']) {
-						$_SESSION['email'] = $data['email'];
-                        $_SESSION['password'] = $data['password'];
+				}else {//Si l'utilisateur existe
+					if($password2 == $data['password']) {
+						$_SESSION['email'] = $data['email'];//MAJ session deouis DB
                         $email = $_SESSION['email'];
-                        $name = $conn->query("SELECT firstname FROM Users WHERE email = '$email' ");
-                        $_SESSION['firstname']=$name->fetchColumn();
-                        $namelast = $conn->query("SELECT lastname FROM Users WHERE email = '$email' ");
-                        $_SESSION['lastname']=$namelast->fetchColumn();
+                        
 						header('Location: message.php');
 						exit;
 					}else

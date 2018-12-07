@@ -1,5 +1,6 @@
 <?php
-session_start();
-session_destroy();
-header('/index.html');
+    session_start();
+    $_SESSION = array();
+    session_destroy();
+    header("Location: index.php");
 ?>

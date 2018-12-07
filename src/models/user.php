@@ -1,7 +1,6 @@
-    <?php
-    
+<?php
     class User {
-        // Ici les propriétés
+        // Propriétés
         public $id;
         public $email;
         public $password;
@@ -9,34 +8,41 @@
         public $lastname;
         public $avatar;
 
-        // Ici le constructeur
-        public function __construct($firstname,$lastname,$email,$password, $id = null){
+        // Constructeur
+        public function __construct($firstname,$lastname,$email,$password,$avatar = "", $id = null){
             $this->id = $id;
             $this->email = $email;
             $this->password = $password;
             $this->firstname = $firstname;
             $this->lastname = $lastname;
+            $this->avatar = $avatar;
         }
-        // Ici la méthode public insert
+        // Méthode public insert
         public function addUserToDb($conn){
-            $pdoStat = $conn->prepare('INSERT INTO Users VALUES(NULL, :firstname, :lastname, :email, :password)');
+            $pdoStat = $conn->prepare('INSERT INTO Users VALUES(NULL, :firstname, :lastname, :email, :password, :avatar)');
             
-            // Execution de la requête    
+            // Execution de la requête
             $insertIsOk = $pdoStat->execute(array(
                 ':firstname' => $this->firstname,
                 ':lastname' => $this->lastname,
                 ':email' => $this->email,
-                ':password' => $this->password
+                ':password' => $this->password,
+                ':avatar' => $this->avatar
                 ));
+
+                header('Location: /index.php');
         }
 
         public static function getUserByEmail($conn,$email){
             $sql = "SELECT * FROM `Users` WHERE email = '$email'";//Récup données user
             $pdostat = $conn->prepare($sql);//Préparat° requête
-            $pdostat->execute();
+            $pdostat->execute();//Execute la requête préparée
             $result = $pdostat->fetch();//Associat° du résultat
-            $user = new User($result['firstname'],$result['lastname'],$result['email'],$result['password'],$result['id']);//Créat° user
+            $user = new User($result['firstname'],$result['lastname'],$result['email'],$result['password'],$result['avatar'],$result['id']);//Créat° user
             return $user;
+        }
+
+        public function removeUser(){
         }
 
         public function login(){
