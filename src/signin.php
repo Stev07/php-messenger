@@ -1,9 +1,21 @@
-<?php 
-    session_start(); 
-    if(isset($_SESSION['logged'])){ 
-        header("location: message.php");
-    }      
-?>
+<?php
+        session_start();
+        require('models/db_connect.php');
+        require('models/user.php');
+
+        //SIGNIN
+        if(isset($_POST['signin'])){
+            $firstname = htmlspecialchars($_POST['firstname']);//Récupération données POST
+            $lastname = htmlspecialchars($_POST['lastname']);
+            $email = htmlspecialchars($_POST['email']);
+            $password = password_hash($_POST['password'], PASSWORD_BCRYPT);//Hash du pass avec BCRYPT
+            $user = new User($firstname, $lastname, $email, $password);//Création nouvel utilisateur
+            $user->addUserToDb($conn);//Envoi user -> DB
+        }
+
+
+    ?>
+    
 <!DOCTYPE html>
 <html lang="fr">
 <head>
