@@ -39,3 +39,5 @@ Chaque vues à un gestionnaire qui s'occupe des requêtes (principalement des fo
   - **reaction** => Contient la classe qui correspond à la table *Reactions* dans la base de données.
   
 D'un point de vue mise en place, nous avons utiliser mysql5 comme Système de Gestion de Base de Données (SGBD) et php7.
+>Vous trouverez un dump de la base de données, avec des exemples fictifs.
+>Nous avons aussi utiliser un environnement docker pour le développement et nous vous fournissons notre fichier de configuration de docker pour vous aider à lancer l'environnement convenablement.
