@@ -41,3 +41,7 @@ Chaque vues à un gestionnaire qui s'occupe des requêtes (principalement des fo
 D'un point de vue mise en place, nous avons utiliser mysql5 comme Système de Gestion de Base de Données (SGBD) et php7.
 >Vous trouverez un dump de la base de données, avec des exemples fictifs.
 >Nous avons aussi utiliser un environnement docker pour le développement et nous vous fournissons notre fichier de configuration de docker pour vous aider à lancer l'environnement convenablement.
+
+Un foi le docker lancé, aller sur http://localhost:8000 pour afficher l'index (page de login), à partir de la, vous pouvez tout exécuter.
+
+Attention, les images docker doivent être construire (docker-compose build) pour que le tout fonctionne. N'hésité pas à aller dans PhpMyAdmin au http://localhost:8001 et exécuter le script dump-sql.sql dans PhpMyAdmin de tel manière à avoir la base de données construite.
