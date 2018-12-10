@@ -11,12 +11,12 @@ Ce travail est réalisé par :
 > Ce travail est réalisé lors du cursus d'apprentissage de la formation BeCode à Liège et c'est donc un travail amateur.
 
 ### Bienvenue sur Ph-Essenger,
-Notre application faite en PHP étant en fait plus un forum qu'un chat à proprement parler.
+Notre application, développée en PHP, est en fait plus un forum qu'un chat à proprement parler.
 
 L'utilisateur peut s'incrire gratuitement au chat, et y créer un topic.
-Une foi le topic créé, tout utilisateur peut poster un message dans ce topic, et ajouter des réactions aux messages.
+Une fois le topic créé, tout utilisateur peut poster un message dans ce topic, et ajouter des réactions aux messages.
  
-Tous les fichiers de configuration pour la base de données en local se trouve dans le git, ainsi que les sources.
+Tous les fichiers de configuration pour la base de données en local se trouvent dans le git, ainsi que les sources.
 
 ##### Architecture:
   - **Models** => Contient les modèles de classes
@@ -30,8 +30,7 @@ Et les vues sont à la racine.
   - **signin.php** => Faussement appelé *connexion en anglais*, c'est la page d'*inscription*.
   - **chat.php** => Coeur névralgique du chat.
   - **profil.php** => Gestion du profil de l'utilateur en cours.
-
-Chaque vues à un gestionnaire qui s'occupe des requêtes (principalement des formulaires).
+Chaque vue à un gestionnaire qui s'occupe des requêtes (principalement des formulaires).
 
 ##### Nous avons 4 modèles:
   - **user.php** => Contient la classe qui correspond à la table *Users* dans la base de données.
@@ -39,10 +38,10 @@ Chaque vues à un gestionnaire qui s'occupe des requêtes (principalement des fo
   - **message.php** => Contient la classe qui correspond à la table *Messages* dans la base de données.
   - **reaction** => Contient la classe qui correspond à la table *Reactions* dans la base de données.
   
-D'un point de vue mise en place, nous avons utiliser mysql5 comme Système de Gestion de Base de Données (SGBD) et php7.
+D'un point de vue mise en place, nous avons utilisé mysql5 comme Système de Gestion de Base de Données (SGBD) et php7.
 >Vous trouverez un dump de la base de données, avec des exemples fictifs.
->Nous avons aussi utiliser un environnement docker pour le développement et nous vous fournissons notre fichier de configuration de docker pour vous aider à lancer l'environnement convenablement.
+>Nous avons aussi utilisé un environnement docker pour le développement et nous vous fournissons notre fichier de configuration de docker pour vous aider à lancer l'environnement convenablement.
 
-Un foi le docker lancé, aller sur http://localhost:8000 pour afficher l'index (page de login), à partir de la, vous pouvez tout exécuter.
+Un fois le docker lancé, allez sur http://localhost:8000 pour afficher l'index (page de login). A partir de là, vous pouvez tout exécuter.
 
-Attention, les images docker doivent être construire (docker-compose build) pour que le tout fonctionne. N'hésité pas à aller dans PhpMyAdmin au http://localhost:8001 et exécuter le script dump-sql.sql dans PhpMyAdmin de tel manière à avoir la base de données construite.
+Attention, les images docker doivent être construites (docker-compose build) pour que le tout fonctionne. N'hésitez pas à aller dans PhpMyAdmin au http://localhost:8001 et exécuter le script dump-sql.sql dans PhpMyAdmin de telle manière à avoir la base de données construite.
