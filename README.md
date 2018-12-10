@@ -30,6 +30,7 @@ Et les vues sont à la racine.
   - **signin.php** => Faussement appelé *connexion en anglais*, c'est la page d'*inscription*.
   - **chat.php** => Coeur névralgique du chat.
   - **profil.php** => Gestion du profil de l'utilateur en cours.
+
 Chaque vues à un gestionnaire qui s'occupe des requêtes (principalement des formulaires).
 
 ##### Nous avons 4 modèles:
